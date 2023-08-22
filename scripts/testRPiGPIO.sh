@@ -42,9 +42,9 @@ function setPinAsInput() {
     # Set up GPIO 4 and set to output
     echo "${pin}" > /sys/class/gpio/export
     sleep 0.25
-    echo "high" > /sys/class/gpio/gpio${pin}/direction
-    sleep 0.25
     echo "in" > /sys/class/gpio/gpio${pin}/direction
+    sleep 0.25
+    echo "high" > /sys/class/gpio/gpio${pin}/direction
     sleep 0.25
 } 
  

@@ -26,7 +26,7 @@ function ctrl_c() {
     echo "** Trapped CTRL-C"
 
     # Clean up
-    for index in pinNumbers; do
+    for index in ${pinNumbers[@]}; do
         echo "${index}" > /sys/class/gpio/unexport
     done
     exit 130
@@ -40,9 +40,9 @@ function setPinAsInput() {
     # Set up GPIO and set to output
     echo "${pin}" > /sys/class/gpio/export
     sleep 0.25
-    echo "in" > /sys/class/gpio/gpio${pin}/direction
-    sleep 0.25
     echo "high" > /sys/class/gpio/gpio${pin}/direction
+    sleep 0.25
+    echo "in" > /sys/class/gpio/gpio${pin}/direction
     sleep 0.25
 } 
  

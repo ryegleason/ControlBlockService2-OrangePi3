@@ -32,10 +32,10 @@ PowerSwitch::PowerSwitch(IDigitalIO& digitalIOReference, ShutdownActivated doShu
 {
     digitalIO.configureDevice(IDigitalIO::DIO_DEVICE_POWERSWITCH);
 
-    ::gpiod::chip chip("gpiochip0");
+    ::gpiod::chip chip("gpiochip1");
 
     powerSwitchIn_port_ = std::make_shared<::gpiod::line>(chip.get_line(POWER_SWITCH_IN_GPIO));
-    powerSwitchIn_port_->request({"gpiochip0", ::gpiod::line_request::DIRECTION_INPUT, 0}, 0);
+    powerSwitchIn_port_->request({"gpiochip1", ::gpiod::line_request::DIRECTION_INPUT, 0}, 0);
     
 	powerSwitchOut_port_ = std::make_shared<::gpiod::line>(chip.get_line(POWER_SWITCH_OUT_GPIO));
     setPowerSignal(PowerState::ON);
@@ -62,11 +62,11 @@ bool PowerSwitch::isShutdownInitiated() const
 void PowerSwitch::setPowerSignal(PowerState state)
 {
     if (state == PowerState::OFF) {
-        powerSwitchOut_port_->request({"gpiochip0", ::gpiod::line_request::DIRECTION_OUTPUT, 0}, 0);
+        powerSwitchOut_port_->request({"gpiochip1", ::gpiod::line_request::DIRECTION_OUTPUT, 0}, 0);
         Logger::logMessage("Disabled power signal.");
     }
     else {
-      powerSwitchOut_port_->request({"gpiochip0", ::gpiod::line_request::DIRECTION_OUTPUT, 0}, 1);
+      powerSwitchOut_port_->request({"gpiochip1", ::gpiod::line_request::DIRECTION_OUTPUT, 0}, 1);
         Logger::logMessage("Enabled power signal.");
     }
 }

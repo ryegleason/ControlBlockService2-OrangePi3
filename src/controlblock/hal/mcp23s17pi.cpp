@@ -24,7 +24,7 @@
 #include <unistd.h>             //Needed for SPI port
 #include <iostream>
 
-bool MCP23S17PI::isBCM2835Initialized_ = false;
+bool MCP23S17PI::isAllwinnerH6Initialized_ = false;
 int MCP23S17PI::spi_cs0_fd_ = 0;
 
 MCP23S17PI::MCP23S17PI(ChipSelectPin chipSelectPin, uint8_t deviceID) :
@@ -41,10 +41,10 @@ MCP23S17PI::MCP23S17PI(ChipSelectPin chipSelectPin, uint8_t deviceID) :
 MCP23S17PI::~MCP23S17PI() = default;
 
 void MCP23S17PI::begin() {
-  if (!isBCM2835Initialized_) {
-    spi_cs0_fd_ = mcp23s17_open(0, 0);
+  if (!isAllwinnerH6Initialized_) {
+    spi_cs0_fd_ = mcp23s17_open(1, 0);
 
-    isBCM2835Initialized_ = true;
+      isAllwinnerH6Initialized_ = true;
   }
 }
 

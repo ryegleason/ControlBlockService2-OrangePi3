@@ -181,7 +181,7 @@ class MCP23S17PI {
   // Default initialization mode
   static const uint8_t IOCON_INIT = 0x28; // IOCON_SEQOP and IOCON_HAEN from above
 
-  static bool isBCM2835Initialized_;
+  static bool isAllwinnerH6Initialized_;
   static int spi_cs0_fd_;
 
   ChipSelectPin chipSelectPin_;

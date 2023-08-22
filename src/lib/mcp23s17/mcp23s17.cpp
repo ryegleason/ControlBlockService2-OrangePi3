@@ -9,6 +9,7 @@
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 #include "mcp23s17.h"
+#include "app/Logger.h"
 
 
 static const uint8_t spi_mode = 0;
@@ -82,9 +83,9 @@ uint8_t mcp23s17_read_reg(uint8_t reg, uint8_t hw_addr, int fd)
 
     // do the SPI transaction
     if ((ioctl(fd, SPI_IOC_MESSAGE(1), &spi) < 0)) {
-        fprintf(stderr,
-                "mcp23s17_read_reg: There was a error during the SPI "
-                "transaction.\n");
+        int error_save = errno;
+        Logger::logMessage("mcp23s17_read_reg: There was a error during the SPI transaction:");
+        Logger::logMessage(strerror(error_save));
         return -1;
     }
 
@@ -109,9 +110,9 @@ void mcp23s17_write_reg(uint8_t data, uint8_t reg, uint8_t hw_addr, int fd)
 
     // do the SPI transaction
     if ((ioctl(fd, SPI_IOC_MESSAGE(1), &spi) < 0)) {
-        fprintf(stderr,
-                "mcp23s17_write_reg: There was a error during the SPI "
-                "transaction.\n");
+        int error_save = errno;
+        Logger::logMessage("mcp23s17_write_reg: There was a error during the SPI transaction.");
+        Logger::logMessage(strerror(error_save));
     }
 }
 

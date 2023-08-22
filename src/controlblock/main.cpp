@@ -84,6 +84,7 @@ int main(int argc, char** argv)
         }
     }
     catch (std::exception& exc) {
+        Logger::logMessage("Error while running main loop.");
         std::cout << "Error while running main loop. Error number: " << exc.what() << std::endl;
     }
 

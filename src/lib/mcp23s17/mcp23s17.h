@@ -72,7 +72,7 @@ extern "C" {
 #define INTPOL_HIGH 0x02  // interupt polarity
 #define INTPOL_LOW 0x00
 
-#define GPIO_INTERRUPT_PIN 25
+#define GPIO_INTERRUPT_PIN 117
 
 /**
  * Returns a file descriptor for the SPI device through which the

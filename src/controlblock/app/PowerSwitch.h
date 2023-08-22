@@ -26,6 +26,9 @@
 #include <gpiod.hpp>
 #include "hal/IDigitalIO.h"
 
+#define POWER_SWITCH_IN_GPIO 114
+#define POWER_SWITCH_OUT_GPIO 120
+
 /**
  * This class models the power switch functionalities of the ControlBlock.
  */

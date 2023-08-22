@@ -34,10 +34,10 @@ PowerSwitch::PowerSwitch(IDigitalIO& digitalIOReference, ShutdownActivated doShu
 
     ::gpiod::chip chip("gpiochip0");
 
-    powerSwitchIn_port_ = std::make_shared<::gpiod::line>(chip.get_line(18));
+    powerSwitchIn_port_ = std::make_shared<::gpiod::line>(chip.get_line(POWER_SWITCH_IN_GPIO));
     powerSwitchIn_port_->request({"gpiochip0", ::gpiod::line_request::DIRECTION_INPUT, 0}, 0);
     
-	powerSwitchOut_port_ = std::make_shared<::gpiod::line>(chip.get_line(17));
+	powerSwitchOut_port_ = std::make_shared<::gpiod::line>(chip.get_line(POWER_SWITCH_OUT_GPIO));
     setPowerSignal(PowerState::ON);
 
     Logger::logMessage(fmt::format("Created PowerSwitch. doShutdown: {}", doShutdownValue));

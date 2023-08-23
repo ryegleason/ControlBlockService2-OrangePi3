@@ -89,7 +89,7 @@ uint8_t mcp23s17_read_reg(uint8_t reg, uint8_t hw_addr, int fd)
         return -1;
     }
 
-    printf("Read in %d with control byte %X and register %d", rx_buf[2], control_byte, reg);
+//    printf("Read in %d with control byte %X and register %d\n", rx_buf[2], control_byte, reg);
 
     // return the data
     return rx_buf[2];

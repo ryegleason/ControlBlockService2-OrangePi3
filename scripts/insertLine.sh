@@ -2,13 +2,10 @@
 
 function addSPIBcmModule() {
     echo -e "Making sure that SPI interface is enabled"
-    grep -qxF 'dtparam=spi=on' /boot/config.txt || echo 'dtparam=spi=on' >> /boot/config.txt
-    modprobe spi_bcm2835
+    grep -qxF 'spi-spidev1' /boot/orangepiEnv.txt || echo 'overlays=spi-spidev1' >> /boot/orangepiEnv.txt
 }
 
 # enable spi kernel module
-touch /etc/modprobe.d/raspi-blacklist.conf
-sed -i -e "s|^blacklist spi-bcm2708|#blacklist spi-bcm2708|g" /etc/modprobe.d/raspi-blacklist.conf
 addSPIBcmModule
 
 # install ControlBlockService files
